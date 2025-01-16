@@ -6,15 +6,15 @@ const validateJwt = ( req, res = response, next ) => {
 
     let token = req.header('authorization');
 
-    if(token.includes('Bearer ')){
-        token = token.slice(7);
-    }
-
     if ( !token ) {
         return res.status(401).json({
             status: "error",
             msg: 'token not found'
         });
+    }
+
+    if(token.includes('Bearer ')){
+        token = token.slice(7);
     }
 
     try {
